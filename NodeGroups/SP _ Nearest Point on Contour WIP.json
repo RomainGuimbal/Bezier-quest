@@ -1,0 +1,3353 @@
+{
+    "name": "SP - Nearest Point on Contour WIP",
+    "inputs": [
+        {
+            "name": "Prepared Wires",
+            "identifier": "Socket_3",
+            "socket_type": "NodeSocketGeometry",
+            "bl_idname": "NodeSocketGeometry",
+            "in_out": "INPUT",
+            "default_value": null,
+            "description": "Geometry whose elements are iterated over",
+            "hide_value": false,
+            "hide_in_modifier": false,
+            "default_attribute_name": "",
+            "attribute_domain": "POINT",
+            "default_input": "VALUE",
+            "force_non_field": false,
+            "menu_expanded": false,
+            "optional_label": false,
+            "is_panel_toggle": false,
+            "structure_type": "AUTO"
+        },
+        {
+            "name": "Points",
+            "identifier": "Socket_0",
+            "socket_type": "NodeSocketGeometry",
+            "bl_idname": "NodeSocketGeometry",
+            "in_out": "INPUT",
+            "default_value": null,
+            "description": "",
+            "hide_value": false,
+            "hide_in_modifier": false,
+            "default_attribute_name": "",
+            "attribute_domain": "POINT",
+            "default_input": "VALUE",
+            "force_non_field": false,
+            "menu_expanded": false,
+            "optional_label": false,
+            "is_panel_toggle": false,
+            "structure_type": "AUTO"
+        },
+        {
+            "name": "Iterations",
+            "identifier": "Socket_1",
+            "socket_type": "NodeSocketInt",
+            "bl_idname": "NodeSocketInt",
+            "in_out": "INPUT",
+            "default_value": 12,
+            "min_value": 0,
+            "max_value": 2147483647,
+            "description": "",
+            "hide_value": false,
+            "hide_in_modifier": false,
+            "default_attribute_name": "",
+            "attribute_domain": "POINT",
+            "default_input": "VALUE",
+            "force_non_field": false,
+            "menu_expanded": false,
+            "optional_label": false,
+            "is_panel_toggle": false,
+            "structure_type": "AUTO"
+        },
+        {
+            "name": "Tolerence Exponent",
+            "identifier": "Socket_2",
+            "socket_type": "NodeSocketInt",
+            "bl_idname": "NodeSocketInt",
+            "in_out": "INPUT",
+            "default_value": 0,
+            "min_value": -10,
+            "max_value": 16,
+            "description": "",
+            "hide_value": false,
+            "hide_in_modifier": false,
+            "default_attribute_name": "",
+            "attribute_domain": "POINT",
+            "default_input": "VALUE",
+            "force_non_field": true,
+            "menu_expanded": false,
+            "optional_label": false,
+            "is_panel_toggle": false,
+            "structure_type": "SINGLE"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "Geometry",
+            "identifier": "Socket_4",
+            "socket_type": "NodeSocketGeometry",
+            "bl_idname": "NodeSocketGeometry",
+            "in_out": "OUTPUT",
+            "default_value": null,
+            "description": "Result of joining generated geometries from each iteration",
+            "hide_value": false,
+            "hide_in_modifier": false,
+            "default_attribute_name": "",
+            "attribute_domain": "POINT",
+            "default_input": "VALUE",
+            "force_non_field": false,
+            "menu_expanded": false,
+            "optional_label": false,
+            "is_panel_toggle": false,
+            "structure_type": "AUTO"
+        }
+    ],
+    "nodes": [
+        {
+            "name": "Closure Input",
+            "type": "NodeClosureInput",
+            "label": "",
+            "location": [
+                -1413.7049560546875,
+                -216.22825622558594
+            ],
+            "parent": null,
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "Segment",
+                    "identifier": "Item_0",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Segment Info",
+                    "identifier": "Item_1",
+                    "type": "BUNDLE",
+                    "bl_idname": "NodeSocketBundle",
+                    "hide": false
+                },
+                {
+                    "name": "Segment Count",
+                    "identifier": "Item_2",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "",
+                    "identifier": "__extend__",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    -1413.704956,
+                    -216.228256
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "NodeClosureInput",
+                "bl_label": "Closure Input",
+                "bl_description": "",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38
+            },
+            "zone_items": [],
+            "zone_paired_node": "Closure Output",
+            "menu_items_data": []
+        },
+        {
+            "name": "Closure Output",
+            "type": "NodeClosureOutput",
+            "label": "",
+            "location": [
+                1394.8603515625,
+                -7.2555999755859375
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Geometry",
+                    "identifier": "Item_0",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "",
+                    "identifier": "__extend__",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Closure",
+                    "identifier": "Closure",
+                    "type": "CLOSURE",
+                    "bl_idname": "NodeSocketClosure",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    1394.860352,
+                    -7.2556
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "NodeClosureOutput",
+                "bl_label": "Closure Output",
+                "bl_description": "",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "active_input_index": 2,
+                "active_output_index": 0,
+                "define_signature": false
+            },
+            "zone_items": {
+                "input_items": [
+                    {
+                        "name": "Segment",
+                        "identifier": "Segment",
+                        "socket_type": "GEOMETRY"
+                    },
+                    {
+                        "name": "Segment Count",
+                        "identifier": "Segment Count",
+                        "socket_type": "INT"
+                    },
+                    {
+                        "name": "Segment Info",
+                        "identifier": "Segment Info",
+                        "socket_type": "BUNDLE"
+                    }
+                ],
+                "output_items": [
+                    {
+                        "name": "Geometry",
+                        "identifier": "Geometry",
+                        "socket_type": "GEOMETRY"
+                    }
+                ]
+            },
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "Combine Bundle",
+            "type": "NodeCombineBundle",
+            "label": "",
+            "location": [
+                824.2003784179688,
+                -276.1924743652344
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Type",
+                    "identifier": "Item_0",
+                    "type": "STRING",
+                    "bl_idname": "NodeSocketString",
+                    "hide": false
+                },
+                {
+                    "name": "Segment Type",
+                    "identifier": "Item_16",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Point Count",
+                    "identifier": "Item_1",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Degree",
+                    "identifier": "Item_2",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Resolution",
+                    "identifier": "Item_3",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Knot Support",
+                    "identifier": "Item_4",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Knot",
+                    "identifier": "Item_5",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Unique Knot",
+                    "identifier": "Item_6",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Multiplicity",
+                    "identifier": "Item_7",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Compact Knot Length",
+                    "identifier": "Item_8",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Scaled Basis",
+                    "identifier": "Item_9",
+                    "type": "MATRIX",
+                    "bl_idname": "NodeSocketMatrix",
+                    "hide": false
+                },
+                {
+                    "name": "Min Parameter",
+                    "identifier": "Item_10",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Max Parameter",
+                    "identifier": "Item_11",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Rational",
+                    "identifier": "Item_12",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false
+                },
+                {
+                    "name": "Clamped",
+                    "identifier": "Item_13",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false
+                },
+                {
+                    "name": "Cyclic",
+                    "identifier": "Item_14",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false
+                },
+                {
+                    "name": "",
+                    "identifier": "__extend__",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Bundle",
+                    "identifier": "Bundle",
+                    "type": "BUNDLE",
+                    "bl_idname": "NodeSocketBundle",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    824.200378,
+                    -276.192474
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "NodeCombineBundle",
+                "bl_label": "Combine Bundle",
+                "bl_description": "Combine multiple socket values into one.",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "active_index": 15,
+                "define_signature": false
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": [],
+            "bundle_items_data": [
+                {
+                    "name": "Clamped",
+                    "identifier": "Clamped",
+                    "socket_type": "BOOLEAN"
+                },
+                {
+                    "name": "Compact Knot Length",
+                    "identifier": "Compact Knot Length",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Cyclic",
+                    "identifier": "Cyclic",
+                    "socket_type": "BOOLEAN"
+                },
+                {
+                    "name": "Degree",
+                    "identifier": "Degree",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Knot",
+                    "identifier": "Knot",
+                    "socket_type": "FLOAT"
+                },
+                {
+                    "name": "Knot Support",
+                    "identifier": "Knot Support",
+                    "socket_type": "GEOMETRY"
+                },
+                {
+                    "name": "Max Parameter",
+                    "identifier": "Max Parameter",
+                    "socket_type": "FLOAT"
+                },
+                {
+                    "name": "Min Parameter",
+                    "identifier": "Min Parameter",
+                    "socket_type": "FLOAT"
+                },
+                {
+                    "name": "Multiplicity",
+                    "identifier": "Multiplicity",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Point Count",
+                    "identifier": "Point Count",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Rational",
+                    "identifier": "Rational",
+                    "socket_type": "BOOLEAN"
+                },
+                {
+                    "name": "Resolution",
+                    "identifier": "Resolution",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Scaled Basis",
+                    "identifier": "Scaled Basis",
+                    "socket_type": "MATRIX"
+                },
+                {
+                    "name": "Segment Type",
+                    "identifier": "Segment Type",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Type",
+                    "identifier": "Type",
+                    "socket_type": "STRING"
+                },
+                {
+                    "name": "Unique Knot",
+                    "identifier": "Unique Knot",
+                    "socket_type": "FLOAT"
+                }
+            ]
+        },
+        {
+            "name": "Convex Hull",
+            "type": "GeometryNodeConvexHull",
+            "label": "",
+            "location": [
+                -370.19012451171875,
+                662.175537109375
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Geometry",
+                    "identifier": "Geometry",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Convex Hull",
+                    "identifier": "Convex Hull",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    -370.190125,
+                    662.175537
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": true,
+                "show_texture": false,
+                "bl_idname": "GeometryNodeConvexHull",
+                "bl_label": "Convex Hull",
+                "bl_description": "Create a mesh that encloses all points in the input geometry with the smallest number of points",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "Domain Size.002",
+            "type": "GeometryNodeAttributeDomainSize",
+            "label": "",
+            "location": [
+                464.1623229980469,
+                -390.3599548339844
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Geometry",
+                    "identifier": "Geometry",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Point Count",
+                    "identifier": "Point Count",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Edge Count",
+                    "identifier": "Edge Count",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Face Count",
+                    "identifier": "Face Count",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Face Corner Count",
+                    "identifier": "Face Corner Count",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Spline Count",
+                    "identifier": "Spline Count",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Instance Count",
+                    "identifier": "Instance Count",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Layer Count",
+                    "identifier": "Layer Count",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    464.162323,
+                    -390.359955
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": true,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "GeometryNodeAttributeDomainSize",
+                "bl_label": "Domain Size",
+                "bl_description": "Retrieve the number of elements in a geometry for each attribute domain",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "component": "MESH"
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "For Each Geometry Element Input",
+            "type": "GeometryNodeForeachGeometryElementInput",
+            "label": "",
+            "location": [
+                1260.3216552734375,
+                -818.3944702148438
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Geometry",
+                    "identifier": "Geometry",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Selection",
+                    "identifier": "Selection",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false,
+                    "default_value": true
+                },
+                {
+                    "name": "",
+                    "identifier": "__extend__",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Index",
+                    "identifier": "Index",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Element",
+                    "identifier": "Element",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "",
+                    "identifier": "__extend__",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    1260.321655,
+                    -818.39447
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "GeometryNodeForeachGeometryElementInput",
+                "bl_label": "For Each Geometry Element Input",
+                "bl_description": "",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38
+            },
+            "zone_items": [],
+            "zone_paired_node": "For Each Geometry Element Output",
+            "menu_items_data": []
+        },
+        {
+            "name": "For Each Geometry Element Output",
+            "type": "GeometryNodeForeachGeometryElementOutput",
+            "label": "",
+            "location": [
+                1830.988525390625,
+                -812.62939453125
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "",
+                    "identifier": "__extend__main",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": false
+                },
+                {
+                    "name": "Geometry",
+                    "identifier": "Generation_0",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "",
+                    "identifier": "__extend__generation",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Geometry",
+                    "identifier": "Geometry",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "",
+                    "identifier": "__extend__main",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": false
+                },
+                {
+                    "name": "Geometry",
+                    "identifier": "Generation_0",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "",
+                    "identifier": "__extend__generation",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    1830.988525,
+                    -812.629395
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "GeometryNodeForeachGeometryElementOutput",
+                "bl_label": "For Each Geometry Element Output",
+                "bl_description": "",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "active_input_index": 0,
+                "active_generation_index": 0,
+                "active_main_index": 0,
+                "domain": "INSTANCE",
+                "inspection_index": 0
+            },
+            "zone_items": {
+                "main_items": [],
+                "generation_items": [
+                    {
+                        "name": "Geometry",
+                        "identifier": "Geometry",
+                        "socket_type": "GEOMETRY"
+                    }
+                ],
+                "input_items": []
+            },
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "Frame",
+            "type": "NodeFrame",
+            "label": "Initial Guess",
+            "location": [
+                -1005.8823852539062,
+                445.6823425292969
+            ],
+            "parent": null,
+            "inputs": [],
+            "outputs": [],
+            "properties": {
+                "location_absolute": [
+                    -1005.882385,
+                    445.682343
+                ],
+                "height": 584.388245,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "NodeFrame",
+                "bl_label": "Frame",
+                "bl_description": "Collect related nodes together in a common area. Useful for organization when the re-usability of a node group is not required",
+                "bl_icon": "NONE",
+                "bl_width_default": 160.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 3.4028234663852886e+38,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "text": null,
+                "shrink": true,
+                "label_size": 20
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "Group Input",
+            "type": "NodeGroupInput",
+            "label": "",
+            "location": [
+                -2170.55224609375,
+                -790.5657958984375
+            ],
+            "parent": null,
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "Prepared Wires",
+                    "identifier": "Socket_3",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Points",
+                    "identifier": "Socket_0",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Iterations",
+                    "identifier": "Socket_1",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Tolerence Exponent",
+                    "identifier": "Socket_2",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "",
+                    "identifier": "__extend__",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    -2170.552246,
+                    -790.565796
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "NodeGroupInput",
+                "bl_label": "Group Input",
+                "bl_description": "Expose connected data from inside a node group as inputs to its interface",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "Group Output",
+            "type": "NodeGroupOutput",
+            "label": "",
+            "location": [
+                2462.365478515625,
+                -871.628173828125
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Geometry",
+                    "identifier": "Socket_4",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "",
+                    "identifier": "__extend__",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": false
+                }
+            ],
+            "outputs": [],
+            "properties": {
+                "location_absolute": [
+                    2462.365479,
+                    -871.628174
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "NodeGroupOutput",
+                "bl_label": "Group Output",
+                "bl_description": "Output data from inside of a node group",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "is_active_output": true
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "Group.003",
+            "type": "GeometryNodeGroup",
+            "label": "",
+            "location": [
+                50.42044448852539,
+                -215.3921661376953
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Points",
+                    "identifier": "Socket_20",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Iterations",
+                    "identifier": "Socket_1",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Tolerence Exponent",
+                    "identifier": "Socket_4",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Initial Guess",
+                    "identifier": "Socket_5",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Target CP",
+                    "identifier": "Socket_2",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Segment Count",
+                    "identifier": "Socket_25",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Clamped",
+                    "identifier": "Socket_18",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false,
+                    "default_value": true
+                },
+                {
+                    "name": "Closed Wire",
+                    "identifier": "Socket_19",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false,
+                    "default_value": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Points",
+                    "identifier": "Socket_21",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Parameter",
+                    "identifier": "Socket_9",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Achieved Tolerance",
+                    "identifier": "Socket_22",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    50.420444,
+                    -215.392166
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "GeometryNodeGroup",
+                "bl_label": "Group",
+                "bl_description": "",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 60.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": [],
+            "node_tree_reference": "SP - Nearest Points on Segment"
+        },
+        {
+            "name": "Group.007",
+            "type": "GeometryNodeGroup",
+            "label": "",
+            "location": [
+                -1053.67236328125,
+                665.0703125
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "NURBS Segment",
+                    "identifier": "Socket_0",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Segment Info",
+                    "identifier": "Socket_21",
+                    "type": "BUNDLE",
+                    "bl_idname": "NodeSocketBundle",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "NURBS Form",
+                    "identifier": "Socket_20",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Bezier Chain",
+                    "identifier": "Socket_1",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Segment Index",
+                    "identifier": "Socket_13",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Segment Count",
+                    "identifier": "Socket_14",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    -1053.672363,
+                    665.070312
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": true,
+                "show_texture": false,
+                "bl_idname": "GeometryNodeGroup",
+                "bl_label": "Group",
+                "bl_description": "",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 60.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": [],
+            "node_tree_reference": "SP - NURBS Segment to Bezier segments [Intern]"
+        },
+        {
+            "name": "Group.012",
+            "type": "GeometryNodeGroup",
+            "label": "",
+            "location": [
+                1035.8736572265625,
+                -86.3734130859375
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Segment CP",
+                    "identifier": "Socket_15",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Lines as 2 points",
+                    "identifier": "Socket_44",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false,
+                    "default_value": false
+                },
+                {
+                    "name": "Use Custom Evaluation Points",
+                    "identifier": "Socket_25",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false,
+                    "default_value": true
+                },
+                {
+                    "name": "Custom Evaluation Points",
+                    "identifier": "Socket_26",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Segment Info",
+                    "identifier": "Socket_47",
+                    "type": "BUNDLE",
+                    "bl_idname": "NodeSocketBundle",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Meshed",
+                    "identifier": "Socket_9",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Arcs Info",
+                    "identifier": "Socket_48",
+                    "type": "BUNDLE",
+                    "bl_idname": "NodeSocketBundle",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    1035.873657,
+                    -86.373413
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "GeometryNodeGroup",
+                "bl_label": "Group",
+                "bl_description": "",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 60.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": [],
+            "node_tree_reference": "SP - Evaluate Segment"
+        },
+        {
+            "name": "Group.013",
+            "type": "GeometryNodeGroup",
+            "label": "",
+            "location": [
+                30.0516357421875,
+                -216.12484741210938
+            ],
+            "parent": "Frame",
+            "inputs": [
+                {
+                    "name": "Segment CP",
+                    "identifier": "Socket_15",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Lines as 2 points",
+                    "identifier": "Socket_44",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false,
+                    "default_value": false
+                },
+                {
+                    "name": "Use Custom Evaluation Points",
+                    "identifier": "Socket_25",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false,
+                    "default_value": false
+                },
+                {
+                    "name": "Custom Evaluation Points",
+                    "identifier": "Socket_26",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false,
+                    "default_value": 0.0
+                },
+                {
+                    "name": "Segment Info",
+                    "identifier": "Socket_47",
+                    "type": "BUNDLE",
+                    "bl_idname": "NodeSocketBundle",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Meshed",
+                    "identifier": "Socket_9",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Arcs Info",
+                    "identifier": "Socket_48",
+                    "type": "BUNDLE",
+                    "bl_idname": "NodeSocketBundle",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    -975.83075,
+                    229.557495
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "GeometryNodeGroup",
+                "bl_label": "Group",
+                "bl_description": "",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 60.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": [],
+            "node_tree_reference": "SP - Evaluate Segment"
+        },
+        {
+            "name": "Integer Math.001",
+            "type": "FunctionNodeIntegerMath",
+            "label": "",
+            "location": [
+                469.1923828125,
+                -333.47332763671875
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Value",
+                    "identifier": "Value",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Value",
+                    "identifier": "Value_001",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false,
+                    "default_value": 1
+                },
+                {
+                    "name": "Value",
+                    "identifier": "Value_002",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false,
+                    "default_value": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Value",
+                    "identifier": "Value",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    469.192383,
+                    -333.473328
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": true,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "FunctionNodeIntegerMath",
+                "bl_label": "Integer Math",
+                "bl_description": "Perform various math operations on the given integer inputs",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "operation": "SUBTRACT"
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "Map Range",
+            "type": "ShaderNodeMapRange",
+            "label": "",
+            "location": [
+                696.9620361328125,
+                -54.271331787109375
+            ],
+            "parent": "Frame",
+            "inputs": [
+                {
+                    "name": "Value",
+                    "identifier": "Value",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "From Min",
+                    "identifier": "From Min",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false,
+                    "default_value": 0.0
+                },
+                {
+                    "name": "From Max",
+                    "identifier": "From Max",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false,
+                    "default_value": 1.0
+                },
+                {
+                    "name": "To Min",
+                    "identifier": "To Min",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "To Max",
+                    "identifier": "To Max",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Steps",
+                    "identifier": "Steps",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false,
+                    "default_value": 4.0
+                },
+                {
+                    "name": "Vector",
+                    "identifier": "Vector",
+                    "type": "VECTOR",
+                    "bl_idname": "NodeSocketVector",
+                    "hide": false,
+                    "default_value": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                {
+                    "name": "From Min",
+                    "identifier": "From_Min_FLOAT3",
+                    "type": "VECTOR",
+                    "bl_idname": "NodeSocketVector",
+                    "hide": false,
+                    "default_value": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                {
+                    "name": "From Max",
+                    "identifier": "From_Max_FLOAT3",
+                    "type": "VECTOR",
+                    "bl_idname": "NodeSocketVector",
+                    "hide": false,
+                    "default_value": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "To Min",
+                    "identifier": "To_Min_FLOAT3",
+                    "type": "VECTOR",
+                    "bl_idname": "NodeSocketVector",
+                    "hide": false,
+                    "default_value": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                {
+                    "name": "To Max",
+                    "identifier": "To_Max_FLOAT3",
+                    "type": "VECTOR",
+                    "bl_idname": "NodeSocketVector",
+                    "hide": false,
+                    "default_value": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "name": "Steps",
+                    "identifier": "Steps_FLOAT3",
+                    "type": "VECTOR",
+                    "bl_idname": "NodeSocketVector",
+                    "hide": false,
+                    "default_value": [
+                        4.0,
+                        4.0,
+                        4.0
+                    ]
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Result",
+                    "identifier": "Result",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Vector",
+                    "identifier": "Vector",
+                    "type": "VECTOR",
+                    "bl_idname": "NodeSocketVector",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    -308.92038,
+                    391.411011
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "ShaderNodeMapRange",
+                "bl_label": "Map Range",
+                "bl_description": "Remap a value from a range to a target range",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "clamp": false,
+                "interpolation_type": "LINEAR",
+                "data_type": "FLOAT"
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "Math.002",
+            "type": "ShaderNodeMath",
+            "label": "",
+            "location": [
+                533.1895751953125,
+                -54.863433837890625
+            ],
+            "parent": "Frame",
+            "inputs": [
+                {
+                    "name": "Value",
+                    "identifier": "Value",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Value",
+                    "identifier": "Value_001",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false,
+                    "default_value": 16.0
+                },
+                {
+                    "name": "Value",
+                    "identifier": "Value_002",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false,
+                    "default_value": 0.5
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Value",
+                    "identifier": "Value",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    -472.69278,
+                    390.818909
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "ShaderNodeMath",
+                "bl_label": "Math",
+                "bl_description": "Perform math operations",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "operation": "DIVIDE",
+                "use_clamp": false
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "Realize Instances",
+            "type": "GeometryNodeRealizeInstances",
+            "label": "",
+            "location": [
+                1445.4901123046875,
+                -828.7607421875
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Geometry",
+                    "identifier": "Geometry",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Selection",
+                    "identifier": "Selection",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false,
+                    "default_value": true
+                },
+                {
+                    "name": "Realize All",
+                    "identifier": "Realize All",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false,
+                    "default_value": true
+                },
+                {
+                    "name": "Depth",
+                    "identifier": "Depth",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false,
+                    "default_value": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Geometry",
+                    "identifier": "Geometry",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    1445.490112,
+                    -828.760742
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "GeometryNodeRealizeInstances",
+                "bl_label": "Realize Instances",
+                "bl_description": "Convert instances into real geometry data",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "realize_to_point_domain": false
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "Reroute",
+            "type": "NodeReroute",
+            "label": "",
+            "location": [
+                -100.40312957763672,
+                -186.29527282714844
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Input",
+                    "identifier": "Input",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Output",
+                    "identifier": "Output",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    -100.40313,
+                    -186.295273
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "NodeReroute",
+                "bl_label": "Reroute",
+                "bl_description": "A single-socket organization tool that supports one input and multiple outputs",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "socket_idname": "NodeSocketGeometry"
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "Reroute.004",
+            "type": "NodeReroute",
+            "label": "TODO Filter closest",
+            "location": [
+                2159.872314453125,
+                -687.0899658203125
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Input",
+                    "identifier": "Input",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Output",
+                    "identifier": "Output",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    2159.872314,
+                    -687.089966
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "NodeReroute",
+                "bl_label": "Reroute",
+                "bl_description": "A single-socket organization tool that supports one input and multiple outputs",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "socket_idname": "NodeSocketGeometry"
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "SP - Segment Iterator",
+            "type": "GeometryNodeGroup",
+            "label": "",
+            "location": [
+                1632.4222412109375,
+                -819.141845703125
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Wire Control Geom",
+                    "identifier": "Socket_0",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Closure",
+                    "identifier": "Socket_1",
+                    "type": "CLOSURE",
+                    "bl_idname": "NodeSocketClosure",
+                    "hide": false
+                },
+                {
+                    "name": "Fallback Resolution",
+                    "identifier": "Socket_6",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false,
+                    "default_value": 16
+                },
+                {
+                    "name": "Clamped",
+                    "identifier": "Socket_5",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false,
+                    "default_value": true
+                },
+                {
+                    "name": "Auto Knot Method",
+                    "identifier": "Socket_4",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false,
+                    "default_value": 0
+                },
+                {
+                    "name": "Overwrite Knot",
+                    "identifier": "Socket_7",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false,
+                    "default_value": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Geometry",
+                    "identifier": "Socket_2",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    1632.422241,
+                    -819.141846
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "GeometryNodeGroup",
+                "bl_label": "Group",
+                "bl_description": "",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 60.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": [],
+            "node_tree_reference": "SP - Segment Iterator"
+        },
+        {
+            "name": "Sample Nearest.001",
+            "type": "GeometryNodeSampleNearest",
+            "label": "",
+            "location": [
+                367.54547119140625,
+                -56.0902099609375
+            ],
+            "parent": "Frame",
+            "inputs": [
+                {
+                    "name": "Geometry",
+                    "identifier": "Geometry",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Sample Position",
+                    "identifier": "Sample Position",
+                    "type": "VECTOR",
+                    "bl_idname": "NodeSocketVector",
+                    "hide": false,
+                    "default_value": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Index",
+                    "identifier": "Index",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    -638.336914,
+                    389.592133
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "GeometryNodeSampleNearest",
+                "bl_label": "Sample Nearest",
+                "bl_description": "Find the element of a geometry closest to a position. Similar to the \"Index of Nearest\" node",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "domain": "POINT"
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        },
+        {
+            "name": "Separate Bundle",
+            "type": "NodeSeparateBundle",
+            "label": "",
+            "location": [
+                71.8121337890625,
+                -456.36669921875
+            ],
+            "parent": "Frame",
+            "inputs": [
+                {
+                    "name": "Bundle",
+                    "identifier": "Bundle",
+                    "type": "BUNDLE",
+                    "bl_idname": "NodeSocketBundle",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Type",
+                    "identifier": "Item_0",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": true
+                },
+                {
+                    "name": "Point Count",
+                    "identifier": "Item_1",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": true
+                },
+                {
+                    "name": "Degree",
+                    "identifier": "Item_2",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": true
+                },
+                {
+                    "name": "Resolution",
+                    "identifier": "Item_16",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": true
+                },
+                {
+                    "name": "Knot Support",
+                    "identifier": "Item_3",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": true
+                },
+                {
+                    "name": "Knot",
+                    "identifier": "Item_4",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": true
+                },
+                {
+                    "name": "Unique Knot",
+                    "identifier": "Item_5",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": true
+                },
+                {
+                    "name": "Multiplicity",
+                    "identifier": "Item_6",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": true
+                },
+                {
+                    "name": "Compact Knot Length",
+                    "identifier": "Item_21",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": true
+                },
+                {
+                    "name": "Scaled Basis",
+                    "identifier": "Item_7",
+                    "type": "MATRIX",
+                    "bl_idname": "NodeSocketMatrix",
+                    "hide": true
+                },
+                {
+                    "name": "Min Parameter",
+                    "identifier": "Item_8",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Max Parameter",
+                    "identifier": "Item_9",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Rational",
+                    "identifier": "Item_10",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": true
+                },
+                {
+                    "name": "Clamped",
+                    "identifier": "Item_11",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": true
+                },
+                {
+                    "name": "Cyclic",
+                    "identifier": "Item_12",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": true
+                },
+                {
+                    "name": "",
+                    "identifier": "__extend__",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": true
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    -934.070251,
+                    -10.684361
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "NodeSeparateBundle",
+                "bl_label": "Separate Bundle",
+                "bl_description": "Split a bundle into multiple sockets.",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "active_index": 14,
+                "define_signature": false
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": [],
+            "bundle_items_data": [
+                {
+                    "name": "Clamped",
+                    "identifier": "Clamped",
+                    "socket_type": "BOOLEAN"
+                },
+                {
+                    "name": "Compact Knot Length",
+                    "identifier": "Compact Knot Length",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Cyclic",
+                    "identifier": "Cyclic",
+                    "socket_type": "BOOLEAN"
+                },
+                {
+                    "name": "Degree",
+                    "identifier": "Degree",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Knot",
+                    "identifier": "Knot",
+                    "socket_type": "FLOAT"
+                },
+                {
+                    "name": "Knot Support",
+                    "identifier": "Knot Support",
+                    "socket_type": "GEOMETRY"
+                },
+                {
+                    "name": "Max Parameter",
+                    "identifier": "Max Parameter",
+                    "socket_type": "FLOAT"
+                },
+                {
+                    "name": "Min Parameter",
+                    "identifier": "Min Parameter",
+                    "socket_type": "FLOAT"
+                },
+                {
+                    "name": "Multiplicity",
+                    "identifier": "Multiplicity",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Point Count",
+                    "identifier": "Point Count",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Rational",
+                    "identifier": "Rational",
+                    "socket_type": "BOOLEAN"
+                },
+                {
+                    "name": "Resolution",
+                    "identifier": "Resolution",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Scaled Basis",
+                    "identifier": "Scaled Basis",
+                    "socket_type": "MATRIX"
+                },
+                {
+                    "name": "Type",
+                    "identifier": "Type",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Unique Knot",
+                    "identifier": "Unique Knot",
+                    "socket_type": "FLOAT"
+                }
+            ]
+        },
+        {
+            "name": "Separate Bundle.001",
+            "type": "NodeSeparateBundle",
+            "label": "",
+            "location": [
+                645.51025390625,
+                -278.4966125488281
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Bundle",
+                    "identifier": "Bundle",
+                    "type": "BUNDLE",
+                    "bl_idname": "NodeSocketBundle",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Type",
+                    "identifier": "Item_0",
+                    "type": "STRING",
+                    "bl_idname": "NodeSocketString",
+                    "hide": false
+                },
+                {
+                    "name": "Segment Type",
+                    "identifier": "Item_31",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Point Count",
+                    "identifier": "Item_1",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Degree",
+                    "identifier": "Item_2",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Resolution",
+                    "identifier": "Item_3",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Knot Support",
+                    "identifier": "Item_4",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Knot",
+                    "identifier": "Item_5",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Unique Knot",
+                    "identifier": "Item_6",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Multiplicity",
+                    "identifier": "Item_7",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Compact Knot Length",
+                    "identifier": "Item_8",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                },
+                {
+                    "name": "Scaled Basis",
+                    "identifier": "Item_9",
+                    "type": "MATRIX",
+                    "bl_idname": "NodeSocketMatrix",
+                    "hide": false
+                },
+                {
+                    "name": "Min Parameter",
+                    "identifier": "Item_10",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Max Parameter",
+                    "identifier": "Item_11",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                },
+                {
+                    "name": "Rational",
+                    "identifier": "Item_12",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false
+                },
+                {
+                    "name": "Clamped",
+                    "identifier": "Item_13",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false
+                },
+                {
+                    "name": "Cyclic",
+                    "identifier": "Item_14",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false
+                },
+                {
+                    "name": "",
+                    "identifier": "__extend__",
+                    "type": "CUSTOM",
+                    "bl_idname": "NodeSocketVirtual",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    645.510254,
+                    -278.496613
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "NodeSeparateBundle",
+                "bl_label": "Separate Bundle",
+                "bl_description": "Split a bundle into multiple sockets.",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "active_index": 15,
+                "define_signature": false
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": [],
+            "bundle_items_data": [
+                {
+                    "name": "Clamped",
+                    "identifier": "Clamped",
+                    "socket_type": "BOOLEAN"
+                },
+                {
+                    "name": "Compact Knot Length",
+                    "identifier": "Compact Knot Length",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Cyclic",
+                    "identifier": "Cyclic",
+                    "socket_type": "BOOLEAN"
+                },
+                {
+                    "name": "Degree",
+                    "identifier": "Degree",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Knot",
+                    "identifier": "Knot",
+                    "socket_type": "FLOAT"
+                },
+                {
+                    "name": "Knot Support",
+                    "identifier": "Knot Support",
+                    "socket_type": "GEOMETRY"
+                },
+                {
+                    "name": "Max Parameter",
+                    "identifier": "Max Parameter",
+                    "socket_type": "FLOAT"
+                },
+                {
+                    "name": "Min Parameter",
+                    "identifier": "Min Parameter",
+                    "socket_type": "FLOAT"
+                },
+                {
+                    "name": "Multiplicity",
+                    "identifier": "Multiplicity",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Point Count",
+                    "identifier": "Point Count",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Rational",
+                    "identifier": "Rational",
+                    "socket_type": "BOOLEAN"
+                },
+                {
+                    "name": "Resolution",
+                    "identifier": "Resolution",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Scaled Basis",
+                    "identifier": "Scaled Basis",
+                    "socket_type": "MATRIX"
+                },
+                {
+                    "name": "Segment Type",
+                    "identifier": "Segment Type",
+                    "socket_type": "INT"
+                },
+                {
+                    "name": "Type",
+                    "identifier": "Type",
+                    "socket_type": "STRING"
+                },
+                {
+                    "name": "Unique Knot",
+                    "identifier": "Unique Knot",
+                    "socket_type": "FLOAT"
+                }
+            ]
+        },
+        {
+            "name": "Split to Instances",
+            "type": "GeometryNodeSplitToInstances",
+            "label": "",
+            "location": [
+                -574.4246826171875,
+                674.9273681640625
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Geometry",
+                    "identifier": "Geometry",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Selection",
+                    "identifier": "Selection",
+                    "type": "BOOLEAN",
+                    "bl_idname": "NodeSocketBool",
+                    "hide": false,
+                    "default_value": true
+                },
+                {
+                    "name": "Group ID",
+                    "identifier": "Group ID",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Instances",
+                    "identifier": "Instances",
+                    "type": "GEOMETRY",
+                    "bl_idname": "NodeSocketGeometry",
+                    "hide": false
+                },
+                {
+                    "name": "Group ID",
+                    "identifier": "Group ID",
+                    "type": "INT",
+                    "bl_idname": "NodeSocketInt",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    -574.424683,
+                    674.927368
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": true,
+                "show_texture": false,
+                "bl_idname": "GeometryNodeSplitToInstances",
+                "bl_label": "Split to Instances",
+                "bl_description": "Create separate geometries containing the elements from the same group",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "domain": "EDGE"
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
+        }
+    ],
+    "links": [
+        {
+            "from_node": "Reroute",
+            "from_socket_id": "Output",
+            "from_socket_name": "Output",
+            "to_node": "Group.003",
+            "to_socket_id": "Socket_2",
+            "to_socket_name": "Target CP"
+        },
+        {
+            "from_node": "Group.013",
+            "from_socket_id": "Socket_9",
+            "from_socket_name": "Meshed",
+            "to_node": "Sample Nearest.001",
+            "to_socket_id": "Geometry",
+            "to_socket_name": "Geometry"
+        },
+        {
+            "from_node": "Sample Nearest.001",
+            "from_socket_id": "Index",
+            "from_socket_name": "Index",
+            "to_node": "Math.002",
+            "to_socket_id": "Value",
+            "to_socket_name": "Value"
+        },
+        {
+            "from_node": "Map Range",
+            "from_socket_id": "Result",
+            "from_socket_name": "Result",
+            "to_node": "Group.003",
+            "to_socket_id": "Socket_5",
+            "to_socket_name": "Initial Guess"
+        },
+        {
+            "from_node": "Group.003",
+            "from_socket_id": "Socket_21",
+            "from_socket_name": "Points",
+            "to_node": "Domain Size.002",
+            "to_socket_id": "Geometry",
+            "to_socket_name": "Geometry"
+        },
+        {
+            "from_node": "Domain Size.002",
+            "from_socket_id": "Point Count",
+            "from_socket_name": "Point Count",
+            "to_node": "Integer Math.001",
+            "to_socket_id": "Value",
+            "to_socket_name": "Value"
+        },
+        {
+            "from_node": "Closure Input",
+            "from_socket_id": "Item_0",
+            "from_socket_name": "Segment",
+            "to_node": "Reroute",
+            "to_socket_id": "Input",
+            "to_socket_name": "Input"
+        },
+        {
+            "from_node": "Reroute",
+            "from_socket_id": "Output",
+            "from_socket_name": "Output",
+            "to_node": "Group.012",
+            "to_socket_id": "Socket_15",
+            "to_socket_name": "Segment CP"
+        },
+        {
+            "from_node": "Closure Input",
+            "from_socket_id": "Item_0",
+            "from_socket_name": "Segment",
+            "to_node": "Group.013",
+            "to_socket_id": "Socket_15",
+            "to_socket_name": "Segment CP"
+        },
+        {
+            "from_node": "Group.003",
+            "from_socket_id": "Socket_9",
+            "from_socket_name": "Parameter",
+            "to_node": "Group.012",
+            "to_socket_id": "Socket_26",
+            "to_socket_name": "Custom Evaluation Points"
+        },
+        {
+            "from_node": "Math.002",
+            "from_socket_id": "Value",
+            "from_socket_name": "Value",
+            "to_node": "Map Range",
+            "to_socket_id": "Value",
+            "to_socket_name": "Value"
+        },
+        {
+            "from_node": "Closure Input",
+            "from_socket_id": "Item_2",
+            "from_socket_name": "Segment Count",
+            "to_node": "Group.003",
+            "to_socket_id": "Socket_25",
+            "to_socket_name": "Segment Count"
+        },
+        {
+            "from_node": "Separate Bundle",
+            "from_socket_id": "Item_8",
+            "from_socket_name": "Min Parameter",
+            "to_node": "Map Range",
+            "to_socket_id": "To Min",
+            "to_socket_name": "To Min"
+        },
+        {
+            "from_node": "Separate Bundle",
+            "from_socket_id": "Item_9",
+            "from_socket_name": "Max Parameter",
+            "to_node": "Map Range",
+            "to_socket_id": "To Max",
+            "to_socket_name": "To Max"
+        },
+        {
+            "from_node": "Group.007",
+            "from_socket_id": "Socket_1",
+            "from_socket_name": "Bezier Chain",
+            "to_node": "Split to Instances",
+            "to_socket_id": "Geometry",
+            "to_socket_name": "Geometry"
+        },
+        {
+            "from_node": "Group.007",
+            "from_socket_id": "Socket_13",
+            "from_socket_name": "Segment Index",
+            "to_node": "Split to Instances",
+            "to_socket_id": "Group ID",
+            "to_socket_name": "Group ID"
+        },
+        {
+            "from_node": "Closure Input",
+            "from_socket_id": "Item_0",
+            "from_socket_name": "Segment",
+            "to_node": "Group.007",
+            "to_socket_id": "Socket_0",
+            "to_socket_name": "NURBS Segment"
+        },
+        {
+            "from_node": "Split to Instances",
+            "from_socket_id": "Instances",
+            "from_socket_name": "Instances",
+            "to_node": "Convex Hull",
+            "to_socket_id": "Geometry",
+            "to_socket_name": "Geometry"
+        },
+        {
+            "from_node": "Closure Input",
+            "from_socket_id": "Item_1",
+            "from_socket_name": "Segment Info",
+            "to_node": "Group.013",
+            "to_socket_id": "Socket_47",
+            "to_socket_name": "Segment Info"
+        },
+        {
+            "from_node": "Closure Input",
+            "from_socket_id": "Item_1",
+            "from_socket_name": "Segment Info",
+            "to_node": "Separate Bundle",
+            "to_socket_id": "Bundle",
+            "to_socket_name": "Bundle"
+        },
+        {
+            "from_node": "Closure Input",
+            "from_socket_id": "Item_1",
+            "from_socket_name": "Segment Info",
+            "to_node": "Separate Bundle.001",
+            "to_socket_id": "Bundle",
+            "to_socket_name": "Bundle"
+        },
+        {
+            "from_node": "Combine Bundle",
+            "from_socket_id": "Bundle",
+            "from_socket_name": "Bundle",
+            "to_node": "Group.012",
+            "to_socket_id": "Socket_47",
+            "to_socket_name": "Segment Info"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_9",
+            "from_socket_name": "Scaled Basis",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_9",
+            "to_socket_name": "Scaled Basis"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_4",
+            "from_socket_name": "Knot Support",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_4",
+            "to_socket_name": "Knot Support"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_0",
+            "from_socket_name": "Type",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_0",
+            "to_socket_name": "Type"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_1",
+            "from_socket_name": "Point Count",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_1",
+            "to_socket_name": "Point Count"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_2",
+            "from_socket_name": "Degree",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_2",
+            "to_socket_name": "Degree"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_7",
+            "from_socket_name": "Multiplicity",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_7",
+            "to_socket_name": "Multiplicity"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_8",
+            "from_socket_name": "Compact Knot Length",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_8",
+            "to_socket_name": "Compact Knot Length"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_12",
+            "from_socket_name": "Rational",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_12",
+            "to_socket_name": "Rational"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_13",
+            "from_socket_name": "Clamped",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_13",
+            "to_socket_name": "Clamped"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_14",
+            "from_socket_name": "Cyclic",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_14",
+            "to_socket_name": "Cyclic"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_5",
+            "from_socket_name": "Knot",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_5",
+            "to_socket_name": "Knot"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_6",
+            "from_socket_name": "Unique Knot",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_6",
+            "to_socket_name": "Unique Knot"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_10",
+            "from_socket_name": "Min Parameter",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_10",
+            "to_socket_name": "Min Parameter"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_11",
+            "from_socket_name": "Max Parameter",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_11",
+            "to_socket_name": "Max Parameter"
+        },
+        {
+            "from_node": "Integer Math.001",
+            "from_socket_id": "Value",
+            "from_socket_name": "Value",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_3",
+            "to_socket_name": "Resolution"
+        },
+        {
+            "from_node": "Closure Input",
+            "from_socket_id": "Item_1",
+            "from_socket_name": "Segment Info",
+            "to_node": "Group.007",
+            "to_socket_id": "Socket_21",
+            "to_socket_name": "Segment Info"
+        },
+        {
+            "from_node": "For Each Geometry Element Input",
+            "from_socket_id": "Element",
+            "from_socket_name": "Element",
+            "to_node": "Realize Instances",
+            "to_socket_id": "Geometry",
+            "to_socket_name": "Geometry"
+        },
+        {
+            "from_node": "Realize Instances",
+            "from_socket_id": "Geometry",
+            "from_socket_name": "Geometry",
+            "to_node": "SP - Segment Iterator",
+            "to_socket_id": "Socket_0",
+            "to_socket_name": "Wire Control Geom"
+        },
+        {
+            "from_node": "Closure Output",
+            "from_socket_id": "Closure",
+            "from_socket_name": "Closure",
+            "to_node": "SP - Segment Iterator",
+            "to_socket_id": "Socket_1",
+            "to_socket_name": "Closure"
+        },
+        {
+            "from_node": "Group.012",
+            "from_socket_id": "Socket_9",
+            "from_socket_name": "Meshed",
+            "to_node": "Closure Output",
+            "to_socket_id": "Item_0",
+            "to_socket_name": "Geometry"
+        },
+        {
+            "from_node": "SP - Segment Iterator",
+            "from_socket_id": "Socket_2",
+            "from_socket_name": "Geometry",
+            "to_node": "For Each Geometry Element Output",
+            "to_socket_id": "Generation_0",
+            "to_socket_name": "Geometry"
+        },
+        {
+            "from_node": "Group Input",
+            "from_socket_id": "Socket_1",
+            "from_socket_name": "Iterations",
+            "to_node": "Group.003",
+            "to_socket_id": "Socket_1",
+            "to_socket_name": "Iterations"
+        },
+        {
+            "from_node": "Group Input",
+            "from_socket_id": "Socket_2",
+            "from_socket_name": "Tolerence Exponent",
+            "to_node": "Group.003",
+            "to_socket_id": "Socket_4",
+            "to_socket_name": "Tolerence Exponent"
+        },
+        {
+            "from_node": "Group Input",
+            "from_socket_id": "Socket_0",
+            "from_socket_name": "Points",
+            "to_node": "Group.003",
+            "to_socket_id": "Socket_20",
+            "to_socket_name": "Points"
+        },
+        {
+            "from_node": "For Each Geometry Element Output",
+            "from_socket_id": "Generation_0",
+            "from_socket_name": "Geometry",
+            "to_node": "Group Output",
+            "to_socket_id": "Socket_4",
+            "to_socket_name": "Geometry"
+        },
+        {
+            "from_node": "Group Input",
+            "from_socket_id": "Socket_3",
+            "from_socket_name": "Prepared Wires",
+            "to_node": "For Each Geometry Element Input",
+            "to_socket_id": "Geometry",
+            "to_socket_name": "Geometry"
+        },
+        {
+            "from_node": "Separate Bundle.001",
+            "from_socket_id": "Item_31",
+            "from_socket_name": "Segment Type",
+            "to_node": "Combine Bundle",
+            "to_socket_id": "Item_16",
+            "to_socket_name": "Segment Type"
+        }
+    ],
+    "interface_items": [
+        {
+            "name": "Geometry",
+            "item_type": "SOCKET",
+            "properties": {
+                "description": "Result of joining generated geometries from each iteration",
+                "hide_value": false,
+                "hide_in_modifier": false,
+                "force_non_field": false,
+                "is_panel_toggle": false,
+                "menu_expanded": false,
+                "optional_label": false,
+                "attribute_domain": "POINT",
+                "default_attribute_name": "",
+                "structure_type": "AUTO",
+                "default_input": "VALUE"
+            },
+            "identifier": "Socket_4",
+            "parent": "",
+            "in_out": "OUTPUT",
+            "socket_type": "NodeSocketGeometry",
+            "bl_socket_idname": "NodeSocketGeometry"
+        },
+        {
+            "name": "Prepared Wires",
+            "item_type": "SOCKET",
+            "properties": {
+                "description": "Geometry whose elements are iterated over",
+                "hide_value": false,
+                "hide_in_modifier": false,
+                "force_non_field": false,
+                "is_panel_toggle": false,
+                "menu_expanded": false,
+                "optional_label": false,
+                "attribute_domain": "POINT",
+                "default_attribute_name": "",
+                "structure_type": "AUTO",
+                "default_input": "VALUE"
+            },
+            "identifier": "Socket_3",
+            "parent": "",
+            "in_out": "INPUT",
+            "socket_type": "NodeSocketGeometry",
+            "bl_socket_idname": "NodeSocketGeometry"
+        },
+        {
+            "name": "Points",
+            "item_type": "SOCKET",
+            "properties": {
+                "description": "",
+                "hide_value": false,
+                "hide_in_modifier": false,
+                "force_non_field": false,
+                "is_panel_toggle": false,
+                "menu_expanded": false,
+                "optional_label": false,
+                "attribute_domain": "POINT",
+                "default_attribute_name": "",
+                "structure_type": "AUTO",
+                "default_input": "VALUE"
+            },
+            "identifier": "Socket_0",
+            "parent": "",
+            "in_out": "INPUT",
+            "socket_type": "NodeSocketGeometry",
+            "bl_socket_idname": "NodeSocketGeometry"
+        },
+        {
+            "name": "Iterations",
+            "item_type": "SOCKET",
+            "properties": {
+                "description": "",
+                "hide_value": false,
+                "hide_in_modifier": false,
+                "force_non_field": false,
+                "is_panel_toggle": false,
+                "menu_expanded": false,
+                "optional_label": false,
+                "attribute_domain": "POINT",
+                "default_attribute_name": "",
+                "structure_type": "AUTO",
+                "default_input": "VALUE",
+                "default_value": 12,
+                "min_value": 0,
+                "max_value": 2147483647
+            },
+            "identifier": "Socket_1",
+            "parent": "",
+            "in_out": "INPUT",
+            "socket_type": "NodeSocketInt",
+            "bl_socket_idname": "NodeSocketInt"
+        },
+        {
+            "name": "Tolerence Exponent",
+            "item_type": "SOCKET",
+            "properties": {
+                "description": "",
+                "hide_value": false,
+                "hide_in_modifier": false,
+                "force_non_field": true,
+                "is_panel_toggle": false,
+                "menu_expanded": false,
+                "optional_label": false,
+                "attribute_domain": "POINT",
+                "default_attribute_name": "",
+                "structure_type": "SINGLE",
+                "default_input": "VALUE",
+                "default_value": 0,
+                "min_value": -10,
+                "max_value": 16
+            },
+            "identifier": "Socket_2",
+            "parent": "",
+            "in_out": "INPUT",
+            "socket_type": "NodeSocketInt",
+            "bl_socket_idname": "NodeSocketInt"
+        }
+    ],
+    "tree_properties": {
+        "use_fake_user": false,
+        "use_extra_user": false,
+        "is_runtime_data": false,
+        "color_tag": "GEOMETRY",
+        "default_group_node_width": 240,
+        "description": "",
+        "bl_idname": "GeometryNodeTree",
+        "bl_label": "Geometry Node Editor",
+        "bl_description": "Advanced geometry editing and tools creation using nodes",
+        "bl_icon": "GEOMETRY_NODES",
+        "bl_use_group_interface": true,
+        "is_tool": false,
+        "is_modifier": false,
+        "is_mode_object": false,
+        "is_mode_edit": false,
+        "is_mode_sculpt": false,
+        "is_mode_paint": false,
+        "is_type_mesh": false,
+        "is_type_curve": false,
+        "is_type_pointcloud": false,
+        "use_wait_for_click": false,
+        "is_type_grease_pencil": false,
+        "show_modifier_manage_panel": false
+    }
+}
