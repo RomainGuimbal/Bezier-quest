@@ -2,7 +2,7 @@
     "name": "SP - Tension Gizmo",
     "inputs": [
         {
-            "name": "Tension",
+            "name": "A",
             "identifier": "Socket_2",
             "socket_type": "NodeSocketFloat",
             "bl_idname": "NodeSocketFloat",
@@ -69,7 +69,7 @@
             "structure_type": "AUTO"
         },
         {
-            "name": "Direction",
+            "name": "Pointing toward",
             "identifier": "Socket_5",
             "socket_type": "NodeSocketVector",
             "bl_idname": "NodeSocketVector",
@@ -108,7 +108,7 @@
             "inputs": [],
             "outputs": [
                 {
-                    "name": "Tension",
+                    "name": "A",
                     "identifier": "Socket_2",
                     "type": "VALUE",
                     "bl_idname": "NodeSocketFloat",
@@ -129,7 +129,7 @@
                     "hide": false
                 },
                 {
-                    "name": "Direction",
+                    "name": "Pointing toward",
                     "identifier": "Socket_5",
                     "type": "VECTOR",
                     "bl_idname": "NodeSocketVectorXYZ",
@@ -331,6 +331,102 @@
             "zone_items": [],
             "zone_paired_node": null,
             "menu_items_data": []
+        },
+        {
+            "name": "Vector Math",
+            "type": "ShaderNodeVectorMath",
+            "label": "",
+            "location": [
+                164.60476684570312,
+                -314.5204162597656
+            ],
+            "parent": null,
+            "inputs": [
+                {
+                    "name": "Vector",
+                    "identifier": "Vector",
+                    "type": "VECTOR",
+                    "bl_idname": "NodeSocketVector",
+                    "hide": false
+                },
+                {
+                    "name": "Vector",
+                    "identifier": "Vector_001",
+                    "type": "VECTOR",
+                    "bl_idname": "NodeSocketVector",
+                    "hide": false
+                },
+                {
+                    "name": "Vector",
+                    "identifier": "Vector_002",
+                    "type": "VECTOR",
+                    "bl_idname": "NodeSocketVector",
+                    "hide": false,
+                    "default_value": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                {
+                    "name": "Scale",
+                    "identifier": "Scale",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false,
+                    "default_value": 1.0
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Vector",
+                    "identifier": "Vector",
+                    "type": "VECTOR",
+                    "bl_idname": "NodeSocketVector",
+                    "hide": false
+                },
+                {
+                    "name": "Value",
+                    "identifier": "Value",
+                    "type": "VALUE",
+                    "bl_idname": "NodeSocketFloat",
+                    "hide": false
+                }
+            ],
+            "properties": {
+                "location_absolute": [
+                    164.604767,
+                    -314.520416
+                ],
+                "height": 100.0,
+                "warning_propagation": "ALL",
+                "use_custom_color": false,
+                "color": [
+                    0.608,
+                    0.608,
+                    0.608
+                ],
+                "select": false,
+                "show_options": true,
+                "show_preview": false,
+                "hide": false,
+                "mute": false,
+                "show_texture": false,
+                "bl_idname": "ShaderNodeVectorMath",
+                "bl_label": "Vector Math",
+                "bl_description": "Perform vector math operation",
+                "bl_icon": "NONE",
+                "bl_width_default": 140.0,
+                "bl_width_min": 100.0,
+                "bl_width_max": 700.0,
+                "bl_height_default": 100.0,
+                "bl_height_min": 30.0,
+                "bl_height_max": 3.4028234663852886e+38,
+                "operation": "SUBTRACT"
+            },
+            "zone_items": [],
+            "zone_paired_node": null,
+            "menu_items_data": []
         }
     ],
     "links": [
@@ -345,7 +441,7 @@
         {
             "from_node": "Group Input",
             "from_socket_id": "Socket_2",
-            "from_socket_name": "Tension",
+            "from_socket_name": "A",
             "to_node": "Math",
             "to_socket_id": "Value",
             "to_socket_name": "Value"
@@ -367,17 +463,33 @@
             "to_socket_name": "Value"
         },
         {
-            "from_node": "Group Input",
-            "from_socket_id": "Socket_5",
-            "from_socket_name": "Direction",
+            "from_node": "Vector Math",
+            "from_socket_id": "Vector",
+            "from_socket_name": "Vector",
             "to_node": "Linear Gizmo",
             "to_socket_id": "Direction",
             "to_socket_name": "Direction"
+        },
+        {
+            "from_node": "Group Input",
+            "from_socket_id": "Socket_5",
+            "from_socket_name": "Pointing toward",
+            "to_node": "Vector Math",
+            "to_socket_id": "Vector",
+            "to_socket_name": "Vector"
+        },
+        {
+            "from_node": "Group Input",
+            "from_socket_id": "Socket_3",
+            "from_socket_name": "Position",
+            "to_node": "Vector Math",
+            "to_socket_id": "Vector_001",
+            "to_socket_name": "Vector"
         }
     ],
     "interface_items": [
         {
-            "name": "Tension",
+            "name": "A",
             "item_type": "SOCKET",
             "properties": {
                 "description": "",
@@ -456,7 +568,7 @@
             "bl_socket_idname": "NodeSocketFloat"
         },
         {
-            "name": "Direction",
+            "name": "Pointing toward",
             "item_type": "SOCKET",
             "properties": {
                 "description": "",
@@ -489,7 +601,7 @@
         "use_fake_user": false,
         "use_extra_user": false,
         "is_runtime_data": false,
-        "color_tag": "OUTPUT",
+        "color_tag": "NONE",
         "default_group_node_width": 140,
         "description": "",
         "bl_idname": "GeometryNodeTree",
@@ -508,6 +620,6 @@
         "is_type_pointcloud": false,
         "use_wait_for_click": false,
         "is_type_grease_pencil": false,
-        "show_modifier_manage_panel": false
+        "show_modifier_manage_panel": true
     }
 }
